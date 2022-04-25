@@ -11,35 +11,27 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "main": "./lib/index.umd.js",
-  "types": "./lib/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "package.json",
-    "lib"
+    "dist"
   ],
-  "module": "./lib/index.es.js",
+  "module": "./dist/index.mjs",
   "exports": {
     ".": {
-      "import": "./lib/index.es.js",
-      "require": "./lib/index.umd.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.umd.js"
     }
   },
   "scripts": {
-    "build:types": "tsc --build --force",
-    "build:vite": "vite build",
-    "build": "rm -fr ./lib && yarn build:vite && yarn build:types",
-    "lint:eslint": "yarn eslint ./src --ext js,ts,tsx --max-warnings 0",
-    "lint:stylelint": "yarn stylelint '**/*.ts[x]'",
-    "lint": "yarn lint:eslint && yarn lint:stylelint",
-    "push": "git push --follow-tags origin main",
-    "release": "yarn standard-version && git push --follow-tags origin main",
-    "test": "yarn ava",
-    "test:watch": "yarn ava --watch",
-    "test:coverage": "yarn ava --coverage",
-    "test:coverage:typescript": "yarn typescript-coverage-report",
-    "version:push": "git push --follow-tags origin main",
-    "version:bump": "yarn version patch --force",
-    "version:release": "yarn standard-version",
+    "build": "yarn srclaunch build",
+    "qr": "yarn build && yarn srclaunch changesets add --message \"Quick release - patch\" && yarn srclaunch release",
+    "release": "yarn test:coverage && yarn srclaunch release",
+    "test": "yarn srclaunch test",
+    "test:watch": "yarn srclaunch test --watch",
+    "test:coverage": "yarn srclaunch test --coverage",
     "yui": "yarn upgrade-interactive"
   },
   "devDependencies": {
