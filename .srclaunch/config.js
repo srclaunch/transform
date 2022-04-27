@@ -18,7 +18,7 @@ export default {
       directory: 'src',
       file: 'index.ts',
     },
-    platform: BuildPlatform.Node,
+    platform: BuildPlatform.Browser,
     target: BuildTarget.ESNext,
     tool: BuildTool.Vite,
   },
