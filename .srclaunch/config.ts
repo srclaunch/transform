@@ -55,3 +55,5 @@ const config: Project = {
     },
   },
 };
+
+export default config;
